@@ -12,7 +12,11 @@ Step 1.2 is done. I created my ServiceNow instance. I made a Personal Developer 
 
 Step 1.3 is done. I opened my ServiceNow instance. I saw the ServiceNow homepage.
 
-Step 2 is not done yet. I will upload the security logs. I will search them with KQL. I will investigate the suspicious account. I will build a timeline.
+Step 2.1 is done. I created the SecurityEvent table. I picked the CSV file SOC_Lab_SecurityEvent.csv.
+
+Step 2.2 is not done yet. I will check the column mapping. I will finish the upload.
+
+Step 3 is not done yet. I will search the logs with KQL. I will investigate the suspicious account. I will build a timeline.
 
 Step 3 is not done yet. I will make a ServiceNow ticket. I will write up what I found.
 
@@ -60,6 +64,24 @@ Step 3. I saw the ServiceNow homepage. I saw the top navigation. That proved I w
 
 That is Step 1.3 done.
 
+## Step 2.1
+
+I did Step 2.1 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I went back to dataexplorer.azure.com. I opened my SOC-Lab cluster. I picked Ingest data. I picked Local file. Ingestion means importing the file into a database table so I can search it.
+
+Step 2. I picked SecurityLab as the database. I picked New table. I typed SecurityEvent exactly. I clicked the checkmark. A table is the filing cabinet inside the database. Each row will be one security event.
+
+Step 3. I clicked Browse for files. I picked SOC_Lab_SecurityEvent.csv from my data folder. I saw a green checkmark beside the file. That meant Azure accepted the file. It did not mean the logs were imported yet.
+
+That is Step 2.1 done.
+
+## Step 2.2
+
+Step 2.2 is not done yet. I am checking the columns before I finish the upload. A column is one field in each record. TimeGenerated is when it happened. EventID is what type of event it was. Account is which user was involved. IpAddress is which IP was recorded. Computer is which computer made the event. LogonType is how the login happened.
+
+That is Step 2.2 in progress.
+
 ## What I am learning
 
 A log is a record of what a computer did. A failed login is Event ID 4625. A successful login is Event ID 4624. A group change is Event ID 4728.
@@ -70,7 +92,7 @@ ServiceNow is the ticketing system where I will write up the case. Another analy
 
 ## Screenshots
 
-Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login.
+Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. I will take it after the logs are imported and I see all 63 events.
 
 ## Source
 
