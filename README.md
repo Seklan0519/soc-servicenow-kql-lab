@@ -20,9 +20,15 @@ Step 3 is done. I searched the logs with KQL. I investigated the suspicious acco
 
 Step 4 is done. I assessed how bad the suspicious activity is. I compared alex.morgan activity from two IP addresses. I set the severity to Medium.
 
-Step 5 is not done yet. I will make a ServiceNow ticket. I will write up what I found.
+Step 5.1 is done. I opened the Incidents page in ServiceNow.
 
-The whole project has 10 steps. I am on Step 4 of 10.
+Step 5.2 is done. I opened the new incident form. The incident number is INC0010001.
+
+Step 5.3 is done. I filled in the short description. I set Urgency to 2 Medium. I kept State as New. I have not clicked Submit yet.
+
+Step 5.4 is not done yet. I will save the ticket. I will add the investigation evidence.
+
+The whole project has 10 steps. I am on Step 5 of 10.
 
 ## Step 1.1
 
@@ -172,6 +178,40 @@ Step 3. I noted that severity can change. If more evidence shows unauthorized ad
 
 That is Step 4.2 done.
 
+## Step 5.1
+
+I did Step 5.1 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I switched to my ServiceNow tab. I opened All in the top navigation. I searched for Incidents. I opened the Incidents page.
+
+Step 2. I saw the Incidents View Self Service page. I saw Number and Opened and Short description. I saw a sample incident INC0008111. I did not change it. That is a sample record.
+
+That is Step 5.1 done.
+
+## Step 5.2
+
+I did Step 5.2 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I clicked the blue New button in the upper right. That opened a new incident form. ServiceNow gave it the number INC0010001. I did not change the number.
+
+Step 2. I saw the form fields. I saw Caller and Short description and Impact and Urgency and Assignment group. The form was in View Self Service. That is a simple view. It has fewer fields than the full analyst view. I will switch to the full view later to add my evidence.
+
+That is Step 5.2 done.
+
+## Step 5.3
+
+I did Step 5.3 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I set Urgency to 2 Medium. Urgency means how fast this needs attention. Medium means it needs timely work. I did not pick High. I have not confirmed a compromise yet.
+
+Step 2. I typed the Short description. I typed [SOC LAB] Suspicious RDP Login Followed by Security Group Change. The short description tells another analyst what happened without opening the whole ticket. [SOC LAB] shows this is a lab case. It is not a real breach.
+
+Step 3. I kept State as New. New means the incident was just made. It is not resolved yet. I kept Caller as System Administrator. That is the default in my practice instance. In a real company the Caller would be the person who reported it.
+
+Step 4. I left Comments blank for now. I will add my investigation notes in the full form later. I did not click Submit yet.
+
+That is Step 5.3 done.
+
 ## What I am learning
 
 A log is a record of what a computer did. A failed login is Event ID 4625. A successful login is Event ID 4624. A group change is Event ID 4728.
@@ -188,7 +228,7 @@ ServiceNow is the ticketing system where I will write up the case. Another analy
 
 ## Screenshots
 
-Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. It shows the logs imported and 63 events in the table. The Step 3.1 screenshot is screenshots 04 first kql data exploration.png. It shows SecurityEvent | take 10 and the first 10 results. The Step 3.2 screenshot is screenshots 05 event type summary.png. It shows 49 successes and 13 failures and 1 group change. The Step 3.3 screenshot is screenshots 05 suspicious failed logins.png. It shows 8 failures for alex.morgan from 203.0.113.77. The Step 3.4 screenshot is screenshots 06 suspicious login timeline.png. It shows the 10 event timeline from 14:00 to 14:11 UTC. The Step 3.5 screenshot is screenshots 07 security group change.png. It shows the 4728 event for alex.morgan added to SOC-LAB-Admins. The Step 4.1 screenshot is screenshots 08 account activity comparison.png. It shows alex.morgan activity from 198.51.100.40 with 12 successes and from 203.0.113.77 with 8 failures and 1 success and 1 group change.
+Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. It shows the logs imported and 63 events in the table. The Step 3.1 screenshot is screenshots 04 first kql data exploration.png. It shows SecurityEvent | take 10 and the first 10 results. The Step 3.2 screenshot is screenshots 05 event type summary.png. It shows 49 successes and 13 failures and 1 group change. The Step 3.3 screenshot is screenshots 05 suspicious failed logins.png. It shows 8 failures for alex.morgan from 203.0.113.77. The Step 3.4 screenshot is screenshots 06 suspicious login timeline.png. It shows the 10 event timeline from 14:00 to 14:11 UTC. The Step 3.5 screenshot is screenshots 07 security group change.png. It shows the 4728 event for alex.morgan added to SOC-LAB-Admins. The Step 4.1 screenshot is screenshots 08 account activity comparison.png. It shows alex.morgan activity from 198.51.100.40 with 12 successes and from 203.0.113.77 with 8 failures and 1 success and 1 group change. The Step 5.3 screenshot is screenshots 09 servicenow incident draft.png. It shows INC0010001 with the short description and Urgency 2 Medium and State New before Submit.
 
 ## Source
 
