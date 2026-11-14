@@ -18,9 +18,11 @@ Step 2.2 is done. I checked the column mapping. I finished the upload. I verifie
 
 Step 3 is done. I searched the logs with KQL. I investigated the suspicious account. I built a timeline.
 
-Step 4 is not done yet. I will assess how bad the suspicious activity is. I will make a ServiceNow ticket. I will write up what I found.
+Step 4 is done. I assessed how bad the suspicious activity is. I compared alex.morgan activity from two IP addresses. I set the severity to Medium.
 
-The whole project has 10 steps. I am on Step 3 of 10.
+Step 5 is not done yet. I will make a ServiceNow ticket. I will write up what I found.
+
+The whole project has 10 steps. I am on Step 4 of 10.
 
 ## Step 1.1
 
@@ -146,6 +148,30 @@ Step 3. I wrote down what I do not know yet. I do not know who made the change. 
 
 That is Step 3.5 done.
 
+## Step 4.1
+
+I did Step 4.1 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I ran SecurityEvent | where Account == "alex.morgan" | summarize TotalEvents = count() by IpAddress, EventID, LogonType | order by IpAddress asc, EventID asc. Where means keep only alex.morgan. Summarize means group and count. By IpAddress and EventID and LogonType means make one group for each mix of IP and event and logon type.
+
+Step 2. I read the results. I saw 5 groups. From 198.51.100.40 I saw 12 successes and no failures. 4 were LogonType 10 and 8 were LogonType 3. LogonType 3 means a network logon. From 203.0.113.77 I saw 8 failures and 1 success and 1 group change. All 9 logins from that IP were LogonType 10.
+
+Step 3. I compared the two IPs. The first IP looks like normal use. It has only successes. The second IP has 8 failures then a success then a group change. That pattern is worth a closer look. I cannot call the first IP normal for sure. This dataset is small. It is not enough to build a real baseline.
+
+That is Step 4.1 done.
+
+## Step 4.2
+
+I did Step 4.2 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I assessed the severity. Severity means how serious the incident could be. I looked at three things. Likelihood means how strongly the evidence points to bad activity. Impact means what could happen if it was not allowed. Confidence means how sure I am.
+
+Step 2. I set the severity to Medium. The evidence is worrying. I saw 8 failures then a success then a group change. But I have not confirmed unauthorized access. I have not confirmed what SOC-LAB-Admins can do. So it is not High yet.
+
+Step 3. I noted that severity can change. If more evidence shows unauthorized admin access I would raise it to High. That is normal in a real investigation. New evidence changes the rating.
+
+That is Step 4.2 done.
+
 ## What I am learning
 
 A log is a record of what a computer did. A failed login is Event ID 4625. A successful login is Event ID 4624. A group change is Event ID 4728.
@@ -154,13 +180,15 @@ KQL is the language I use to ask questions about the logs. I used it to find the
 
 I learned three KQL ideas. Where is a filter. It keeps only the rows I want. Summarize is grouping and counting. Project picks the columns I want to see. Order by TimeGenerated asc sorts from earliest to latest.
 
+My severity rating is Medium. The pattern is 8 failures then a success then a group change. I have not confirmed compromise. Severity can change if new evidence comes in.
+
 My main finding is a timeline on Oct 20. 8 failed logins for alex.morgan from 203.0.113.77 from 14:00 to 14:07 UTC. 1 successful RDP login at 14:09 UTC. 1 group change at 14:11 UTC. Alex.morgan was added to SOC-LAB-Admins. That is suspicious. It is not proof of a real attack. All the logs are fake training data.
 
 ServiceNow is the ticketing system where I will write up the case. Another analyst should be able to read my ticket and understand what happened.
 
 ## Screenshots
 
-Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. It shows the logs imported and 63 events in the table. The Step 3.1 screenshot is screenshots 04 first kql data exploration.png. It shows SecurityEvent | take 10 and the first 10 results. The Step 3.2 screenshot is screenshots 05 event type summary.png. It shows 49 successes and 13 failures and 1 group change. The Step 3.3 screenshot is screenshots 05 suspicious failed logins.png. It shows 8 failures for alex.morgan from 203.0.113.77. The Step 3.4 screenshot is screenshots 06 suspicious login timeline.png. It shows the 10 event timeline from 14:00 to 14:11 UTC. The Step 3.5 screenshot is screenshots 07 security group change.png. It shows the 4728 event for alex.morgan added to SOC-LAB-Admins.
+Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. It shows the logs imported and 63 events in the table. The Step 3.1 screenshot is screenshots 04 first kql data exploration.png. It shows SecurityEvent | take 10 and the first 10 results. The Step 3.2 screenshot is screenshots 05 event type summary.png. It shows 49 successes and 13 failures and 1 group change. The Step 3.3 screenshot is screenshots 05 suspicious failed logins.png. It shows 8 failures for alex.morgan from 203.0.113.77. The Step 3.4 screenshot is screenshots 06 suspicious login timeline.png. It shows the 10 event timeline from 14:00 to 14:11 UTC. The Step 3.5 screenshot is screenshots 07 security group change.png. It shows the 4728 event for alex.morgan added to SOC-LAB-Admins. The Step 4.1 screenshot is screenshots 08 account activity comparison.png. It shows alex.morgan activity from 198.51.100.40 with 12 successes and from 203.0.113.77 with 8 failures and 1 success and 1 group change.
 
 ## Source
 
