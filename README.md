@@ -234,6 +234,22 @@ Step 5. I clicked Update. ServiceNow saved the Work notes. I saw them in the Act
 
 That is Steps 5.4 to 5.8 done.
 
+## Step 5.7
+
+I did Step 5.7 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I clicked INC0010001 in the incident list. That reopened my saved incident. I saw State New. I saw Urgency 2 Medium. I saw Impact 3 Low. I saw Priority 4 Low. Priority was Low because Impact was Low. Urgency and Priority are not the same. Priority comes from Impact and Urgency together.
+
+Step 2. I switched to Default view. I clicked the three line menu at the top left. I picked View then Default. Default view shows Description and Work notes and Impact and Assignment group. Self Service view does not show those fields well.
+
+Step 3. I changed Impact from 3 Low to 2 Medium. I kept Urgency at 2 Medium. I changed State from New to In Progress. ServiceNow changed Priority from 4 Low to 3 Moderate by itself. That is normal. Priority is calculated from Impact and Urgency.
+
+Step 4. I pasted the Description. I wrote the incident title and date Oct 20 2026. I wrote the account alex.morgan. I wrote the IP 203.0.113.77. I wrote the endpoint WIN-FINANCE-07. I wrote the domain controller DC-LAB-01. I wrote the group SOC-LAB-Admins. I wrote the timeline. I wrote 8 failures from 14:00 to 14:07 UTC. I wrote the RDP success at 14:09 UTC. I wrote the group change at 14:11 UTC. I wrote my assessment. I wrote that it may be unauthorized access. I wrote that I have not confirmed a stolen password. I wrote that I have not confirmed privilege escalation. I wrote my severity is Medium. I wrote the lab disclaimer. I wrote that this is synthetic training data. It is not a real breach.
+
+Step 5. I removed the ** marks from my headings. ServiceNow shows ** as plain text. It does not make text bold. I used plain headings like INITIAL SECURITY ASSESSMENT instead.
+
+That is Step 5.7 done.
+
 ## Step 5.10 to 5.12
 
 I did Steps 5.10 to 5.12 step by step. Each step has a small note. The note shows what is happening and why I did it.
