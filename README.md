@@ -26,9 +26,15 @@ Step 5.2 is done. I opened the new incident form. The incident number is INC0010
 
 Step 5.3 is done. I filled in the short description. I set Urgency to 2 Medium. I kept State as New. I have not clicked Submit yet.
 
-Step 5.4 is not done yet. I will save the ticket. I will add the investigation evidence.
+Step 5.4 is done. I submitted the ticket. I switched to the full Default view. I set Impact to 2 Medium. I set State to In Progress.
 
-The whole project has 10 steps. I am on Step 5 of 10.
+Step 5.8 is done. I added Work notes with my investigation. I clicked Update. ServiceNow saved them.
+
+Step 5.10 is done. I attached 4 KQL screenshots to INC0010001. I verified all 4 files.
+
+Step 6.1 is not done yet. I will open Resolution Information. I will review the final outcome. I will not click Resolve yet.
+
+The whole project has 10 steps. I am on Step 6 of 10.
 
 ## Step 1.1
 
@@ -212,6 +218,42 @@ Step 4. I left Comments blank for now. I will add my investigation notes in the 
 
 That is Step 5.3 done.
 
+## Step 5.4 to 5.8
+
+I did Steps 5.4 to 5.8 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I clicked Submit. ServiceNow saved INC0010001. I switched from Self Service view to Default view. Default view is the full analyst form. It has more fields for investigation notes.
+
+Step 2. I set Impact to 2 Medium. Impact means how much this could affect the business. Medium fits my Medium severity rating. I set State to In Progress. In Progress means I am working on the case. It is no longer New.
+
+Step 3. ServiceNow asked for Work notes before it would save. Work notes are what I did in the investigation. Description says what happened. Work notes say what I checked and what I found. That helps another analyst take over my case without starting again.
+
+Step 4. I pasted my Work notes. I wrote that I checked 63 events. I wrote 49 successes and 13 failures and 1 group change. I wrote the timeline for alex.morgan. I wrote 8 failures from 14:00 to 14:07 UTC. I wrote the RDP success at 14:09 UTC. I wrote the group change at 14:11 UTC. I wrote that I compared two IPs. I wrote my assessment. I wrote that I have not confirmed bad activity. I wrote that I have not confirmed a stolen password. I wrote that I have not confirmed privilege escalation. I wrote my severity is Medium. I wrote my next steps. I wrote to check if the login was allowed. I wrote to check MFA records. I wrote to check if the group change was approved. I wrote to check what SOC-LAB-Admins can do.
+
+Step 5. I clicked Update. ServiceNow saved the Work notes. I saw them in the Activities section. I saw State In Progress. I saw Impact 2 Medium. I saw Urgency 2 Medium. I saw Priority 3 Moderate. Priority comes from Impact and Urgency together. I saw 3 entries in the Activity history.
+
+That is Steps 5.4 to 5.8 done.
+
+## Step 5.10 to 5.12
+
+I did Steps 5.10 to 5.12 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I clicked the paperclip icon at the top of INC0010001. That opened the Attachments window. It said There are no attachments. That meant I had not uploaded evidence yet.
+
+Step 2. I clicked Choose file. I picked 05-Suspicious-Failed-Logins.png. I clicked Open. ServiceNow attached it. I saw Image uploaded in the Activity history. That file proves the 8 failures for alex.morgan.
+
+Step 3. I uploaded the other 3 files one by one. I uploaded 06-Suspicious-Login-Timeline.png. That file proves the failures then the success then the group change. I uploaded 07-Security-Group-Change.png. That file proves the 4728 group change. I uploaded 08-Account-Activity-Comparison.png. That file proves the two IP comparison.
+
+Step 4. I opened the paperclip window again. I saw all 4 files attached. I saw 7 entries in the Activity history. That is 3 entries before plus 4 image uploads. That proved all 4 files were attached.
+
+That is Steps 5.10 to 5.12 done.
+
+## Step 6.1
+
+Step 6.1 is not done yet. I will open Resolution Information. I will review the final outcome. My verdict is Inconclusive. I found suspicious activity. I cannot prove it was allowed. I cannot prove it was not allowed. I will not call it a confirmed attack. I will not call it a real fix. I will write down what I found and what is still not known.
+
+That is Step 6.1 in progress.
+
 ## What I am learning
 
 A log is a record of what a computer did. A failed login is Event ID 4625. A successful login is Event ID 4624. A group change is Event ID 4728.
@@ -219,6 +261,8 @@ A log is a record of what a computer did. A failed login is Event ID 4625. A suc
 KQL is the language I use to ask questions about the logs. I used it to find the failed logins. I used it to find the successful login after them. I used it to build a timeline.
 
 I learned three KQL ideas. Where is a filter. It keeps only the rows I want. Summarize is grouping and counting. Project picks the columns I want to see. Order by TimeGenerated asc sorts from earliest to latest.
+
+My incident is INC0010001. My State is In Progress. My Impact is 2 Medium. My Urgency is 2 Medium. My Priority is 3 Moderate. My verdict is Inconclusive. I found suspicious activity. I did not confirm a compromise.
 
 My severity rating is Medium. The pattern is 8 failures then a success then a group change. I have not confirmed compromise. Severity can change if new evidence comes in.
 
@@ -228,7 +272,7 @@ ServiceNow is the ticketing system where I will write up the case. Another analy
 
 ## Screenshots
 
-Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. It shows the logs imported and 63 events in the table. The Step 3.1 screenshot is screenshots 04 first kql data exploration.png. It shows SecurityEvent | take 10 and the first 10 results. The Step 3.2 screenshot is screenshots 05 event type summary.png. It shows 49 successes and 13 failures and 1 group change. The Step 3.3 screenshot is screenshots 05 suspicious failed logins.png. It shows 8 failures for alex.morgan from 203.0.113.77. The Step 3.4 screenshot is screenshots 06 suspicious login timeline.png. It shows the 10 event timeline from 14:00 to 14:11 UTC. The Step 3.5 screenshot is screenshots 07 security group change.png. It shows the 4728 event for alex.morgan added to SOC-LAB-Admins. The Step 4.1 screenshot is screenshots 08 account activity comparison.png. It shows alex.morgan activity from 198.51.100.40 with 12 successes and from 203.0.113.77 with 8 failures and 1 success and 1 group change. The Step 5.3 screenshot is screenshots 09 servicenow incident draft.png. It shows INC0010001 with the short description and Urgency 2 Medium and State New before Submit.
+Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. It shows the logs imported and 63 events in the table. The Step 3.1 screenshot is screenshots 04 first kql data exploration.png. It shows SecurityEvent | take 10 and the first 10 results. The Step 3.2 screenshot is screenshots 05 event type summary.png. It shows 49 successes and 13 failures and 1 group change. The Step 3.3 screenshot is screenshots 05 suspicious failed logins.png. It shows 8 failures for alex.morgan from 203.0.113.77. The Step 3.4 screenshot is screenshots 06 suspicious login timeline.png. It shows the 10 event timeline from 14:00 to 14:11 UTC. The Step 3.5 screenshot is screenshots 07 security group change.png. It shows the 4728 event for alex.morgan added to SOC-LAB-Admins. The Step 4.1 screenshot is screenshots 08 account activity comparison.png. It shows alex.morgan activity from 198.51.100.40 with 12 successes and from 203.0.113.77 with 8 failures and 1 success and 1 group change. The Step 5.3 screenshot is screenshots 09 servicenow incident draft.png. It shows INC0010001 with the short description and Urgency 2 Medium and State New before Submit. The Step 5.9 screenshot is screenshots 10 servicenow investigation details.png. It shows INC0010001 with Work notes saved and State In Progress and Priority 3 Moderate. The Step 5.12 screenshot is screenshots 11 servicenow evidence attached.png. It shows all 4 KQL screenshots attached to INC0010001.
 
 ## Source
 
