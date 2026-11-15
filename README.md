@@ -40,9 +40,15 @@ Step 6.3 is done. I wrote the final assessment in Resolution notes.
 
 Step 6.4 is done. I moved the final assessment to Work notes. I set Resolution code back to None. I clicked Post. I saved the final assessment.
 
-Step 7 is not done yet. I will write the professional case study report. I will organize the screenshots and queries for GitHub and LinkedIn.
+Step 7 is done. The technical investigation is done up to Step 6.4. The rest is publishing. My GitHub repo is made. It is soc-servicenow-kql-lab. My README is live. My 12 screenshots are uploaded in the screenshots folder.
 
-The whole project has 10 steps. I am on Step 7 of 10.
+Step 8 is not done yet. I will upload my KQL queries to the queries folder.
+
+Step 9 is done. My GitHub repo is published. It is public at github.com/Seklan0519/soc-servicenow-kql-lab.
+
+Step 10 is not done yet. I will make my LinkedIn post.
+
+The whole project has 10 steps. I am on Step 10 of 10 for the last step.
 
 ## Step 1.1
 
@@ -296,9 +302,9 @@ That is Steps 6.1 to 6.4 done.
 
 ## Step 7
 
-Step 7 is not done yet. I will write the professional case study report. I will organize my screenshots and queries. My GitHub repo is already made. It is soc-servicenow-kql-lab. I will not make a new repo with a different name. I will use the repo I already have.
+Step 7 is done. The technical work is done up to Step 6.4. The rest is publishing. My GitHub repo is already made. It is soc-servicenow-kql-lab. I will not make a new repo with a different name. I will use the repo I already have. My README is live. My 12 screenshots are in the screenshots folder. My case study is this README. It has my steps and my findings and my timeline.
 
-That is Step 7 in progress.
+That is Step 7 done.
 
 ## What I am learning
 
