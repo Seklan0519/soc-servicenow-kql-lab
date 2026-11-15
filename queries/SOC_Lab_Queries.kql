@@ -1,0 +1,193 @@
+// SOC_Lab_Queries.kql
+// Simulated SOC investigation: suspicious logins with Azure Data Explorer (KQL)
+// Companion to ServiceNow_KQL_Complete_Beginner_Project_Guide.md
+// Table: SecurityEvent  |  Database: SecurityLab  |  Dataset: SOC_Lab_SecurityEvent.csv (63 synthetic rows, 2026-10-20, UTC)
+// All events, people, systems and IPs are synthetic. The 203.0.113.0/24, 198.51.100.0/24
+// and 192.0.2.0/24 ranges are reserved for documentation only.
+// Run one query at a time. Expected results are noted above each query.
+
+// ---------------------------------------------------------------------------
+// 3.4 Verify ingestion
+// ---------------------------------------------------------------------------
+// A. View 10 records
+SecurityEvent
+| take 10
+
+// B. Count rows — expected: 63
+SecurityEvent
+| count
+
+// C. Display the schema — expected: 9 fields, TimeGenerated datetime, EventID / LogonType numeric
+SecurityEvent
+| getschema
+
+// ---------------------------------------------------------------------------
+// 4.2 Count each type of security event
+// Expected: 4624 = 49, 4625 = 13, 4728 = 1
+// ---------------------------------------------------------------------------
+SecurityEvent
+| summarize NumberOfEvents=count() by EventID
+| sort by NumberOfEvents desc
+
+// ---------------------------------------------------------------------------
+// 4.3 Check the time range
+// Expected: 2026-10-20 13:00:00 UTC through 2026-10-20 15:21:00 UTC
+// ---------------------------------------------------------------------------
+SecurityEvent
+| summarize FirstEvent=min(TimeGenerated), LastEvent=max(TimeGenerated)
+
+// ---------------------------------------------------------------------------
+// 4.4 Show only failed logins — expected: 13 rows
+// ---------------------------------------------------------------------------
+SecurityEvent
+| where EventID == 4625
+| project TimeGenerated, Account, IpAddress, Computer, LogonType
+| sort by TimeGenerated asc
+
+// ---------------------------------------------------------------------------
+// 4.5 Find who has the most failed attempts
+// Expected: alex.morgan / 203.0.113.77 / WIN-FINANCE-07 = 8;
+//           jamie.lee = 2, priya.patel = 2, sam.chen = 1
+// ---------------------------------------------------------------------------
+SecurityEvent
+| where EventID == 4625
+| summarize FailedAttempts=count() by Account, IpAddress, Computer
+| sort by FailedAttempts desc
+
+// ---------------------------------------------------------------------------
+// 4.6 Make a simple detection rule (5+ failures)
+// Expected: only alex.morgan from 203.0.113.77, with 8 failures
+// ---------------------------------------------------------------------------
+SecurityEvent
+| where EventID == 4625
+| summarize FailedAttempts=count() by Account, IpAddress
+| where FailedAttempts >= 5
+| sort by FailedAttempts desc
+
+// Optional: group failures into 10-minute buckets
+// Expected: 8 failures for alex.morgan / 203.0.113.77 in the 14:00-14:09 bucket.
+// Try changing >= 5 to >= 9: the result should become empty.
+SecurityEvent
+| where EventID == 4625
+| summarize FailedAttempts=count()
+    by Account, IpAddress, TimeBucket=bin(TimeGenerated, 10m)
+| where FailedAttempts >= 5
+| sort by TimeBucket asc
+
+// ---------------------------------------------------------------------------
+// 5.1 Examine all events for the suspicious account
+// Note the ordinary-looking successful logons for alex.morgan from
+// 198.51.100.40, a different source from the suspicious 203.0.113.77.
+// ---------------------------------------------------------------------------
+SecurityEvent
+| where Account == "alex.morgan"
+| project TimeGenerated, EventID, Account, IpAddress, Computer,
+          LogonType, TargetAccount, MemberName, EventDescription
+| sort by TimeGenerated asc
+
+// ---------------------------------------------------------------------------
+// 5.2 Find the successful remote logon from the same IP
+// Expected: one row, 2026-10-20 14:09:00 UTC, WIN-FINANCE-07
+// ---------------------------------------------------------------------------
+SecurityEvent
+| where EventID == 4624
+| where LogonType == 10
+| where Account == "alex.morgan"
+| where IpAddress == "203.0.113.77"
+| project TimeGenerated, EventID, Account, IpAddress, Computer, LogonType
+| sort by TimeGenerated asc
+
+// ---------------------------------------------------------------------------
+// 5.3 Investigate the group membership change
+// Expected: one record, 2026-10-20 14:11:00 UTC, DC-LAB-01,
+//           alex.morgan added to SOC-LAB-Admins
+// ---------------------------------------------------------------------------
+SecurityEvent
+| where EventID == 4728
+| project TimeGenerated, EventID, Account, IpAddress,
+          Computer, TargetAccount, MemberName, EventDescription
+| sort by TimeGenerated asc
+
+// ---------------------------------------------------------------------------
+// 5.4 Assemble the definitive timeline — expected: 10 records in order
+// 14:00-14:07  eight failed logons (4625)
+// 14:09        one successful RDP logon (4624, LogonType 10)
+// 14:11        one group membership change (4728)
+// ---------------------------------------------------------------------------
+SecurityEvent
+| where Account == "alex.morgan"
+| where IpAddress == "203.0.113.77"
+| where TimeGenerated between (
+    datetime(2026-10-20T13:55:00Z) .. datetime(2026-10-20T14:15:00Z)
+  )
+| project TimeGenerated, EventID, Account, IpAddress,
+          Computer, LogonType, TargetAccount, MemberName
+| sort by TimeGenerated asc
+
+// ---------------------------------------------------------------------------
+// 5.5 Confirm the case counts with a single query
+// Expected: TotalEvents = 10, FailedLogons = 8, SuccessfulLogons = 1, GroupChanges = 1
+// ---------------------------------------------------------------------------
+SecurityEvent
+| where Account == "alex.morgan"
+| where IpAddress == "203.0.113.77"
+| summarize
+    TotalEvents=count(),
+    FailedLogons=countif(EventID == 4625),
+    SuccessfulLogons=countif(EventID == 4624),
+    GroupChanges=countif(EventID == 4728)
+
+// ---------------------------------------------------------------------------
+// 5.6 Optional: inspect successful RDP events across the dataset
+// ---------------------------------------------------------------------------
+SecurityEvent
+| where EventID == 4624 and LogonType == 10
+| summarize RdpLogons=count() by Account, IpAddress, Computer
+| sort by RdpLogons desc
+
+// ---------------------------------------------------------------------------
+// 5.7 Optional advanced correlation: failures followed by a success within 15 minutes
+// Expected: the alex.morgan / 203.0.113.77 sequence appears.
+// Caveat from the guide: this groups all failures over the dataset; a real
+// detection should use carefully scoped windows and account context.
+// ---------------------------------------------------------------------------
+let Failures = SecurityEvent
+    | where EventID == 4625
+    | summarize FailedAttempts=count(),
+                FirstFailure=min(TimeGenerated),
+                LastFailure=max(TimeGenerated)
+        by Account, IpAddress;
+let Successes = SecurityEvent
+    | where EventID == 4624 and LogonType == 10
+    | project Account, IpAddress, SuccessTime=TimeGenerated, Computer;
+Failures
+| where FailedAttempts >= 5
+| join kind=inner (Successes) on Account, IpAddress
+| where SuccessTime > LastFailure
+| where SuccessTime <= LastFailure + 15m
+| project Account, IpAddress, Computer, FailedAttempts,
+          FirstFailure, LastFailure, SuccessTime
+| sort by SuccessTime asc
+
+// ---------------------------------------------------------------------------
+// 14. Extra practice (after finishing the core case)
+// ---------------------------------------------------------------------------
+// Exercise A — change the threshold in the 4.6 query to >= 3, then >= 9,
+// and compare how many account/IP pairs are returned each time.
+
+// Exercise B — search for a different account (change "alex.morgan" to "jamie.lee"
+// in the 5.1 query). Do you see the same failed-then-successful-then-group-change
+// sequence? Why should you not call all failed sign-ins attacks?
+
+// Exercise C — investigate a single computer
+SecurityEvent
+| where Computer == "WIN-FINANCE-07"
+| summarize Events=count() by EventID
+| sort by EventID asc
+
+// Exercise D — build a simple timeline visualisation of failed logons
+SecurityEvent
+| where EventID == 4625
+| summarize FailedAttempts=count() by TimeBucket=bin(TimeGenerated, 5m)
+| sort by TimeBucket asc
+| render timechart
