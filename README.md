@@ -32,9 +32,17 @@ Step 5.8 is done. I added Work notes with my investigation. I clicked Update. Se
 
 Step 5.10 is done. I attached 4 KQL screenshots to INC0010001. I verified all 4 files.
 
-Step 6.1 is not done yet. I will open Resolution Information. I will review the final outcome. I will not click Resolve yet.
+Step 6.1 is done. I opened Resolution Information. I reviewed the final outcome.
 
-The whole project has 10 steps. I am on Step 6 of 10.
+Step 6.2 is done. I checked the Resolution code options. I did not pick a fix code.
+
+Step 6.3 is done. I wrote the final assessment in Resolution notes.
+
+Step 6.4 is done. I moved the final assessment to Work notes. I set Resolution code back to None. I clicked Post. I saved the final assessment.
+
+Step 7 is not done yet. I will write the professional case study report. I will organize the screenshots and queries for GitHub and LinkedIn.
+
+The whole project has 10 steps. I am on Step 7 of 10.
 
 ## Step 1.1
 
@@ -270,6 +278,28 @@ Step 6.1 is not done yet. I will open Resolution Information. I will review the 
 
 That is Step 6.1 in progress.
 
+## Step 6.1 to 6.4
+
+I did Steps 6.1 to 6.4 step by step. Each step has a small note. The note shows what is happening and why I did it.
+
+Step 1. I opened Resolution Information. I saw Knowledge and Resolution code and Resolution notes and Resolved by and Resolved date. Resolution notes are for another analyst to read later. They should say what I found and what is still not known. I left Knowledge unchecked. I left Resolved by and Resolved date blank.
+
+Step 2. I checked the Resolution code options. I saw Resolved Permanent Fix Applied. I saw Resolved Workaround Applied. I saw Resolved Fixed Without Action. I saw Not Resolved Not Reproducible. I saw Not Resolved Problem Raised. None of those fit my case. I did not fix a real problem. I did not make a real Problem record. So I did not pick a fix code.
+
+Step 3. I wrote the final assessment. My verdict is Inconclusive. I found 8 failures then a success then a group change. I did not confirm a stolen password. I did not confirm unauthorized access. I did not confirm privilege escalation. I wrote the 5 things to check in a real case. I wrote to check if the login was allowed. I wrote to check MFA records. I wrote to check if the group change was approved. I wrote to check what SOC-LAB-Admins can do. I wrote to check related endpoint and domain controller logs.
+
+Step 4. I first picked Not Resolved Problem Raised. Then I changed my mind. That code means a Problem record was made. I did not make one. So I changed Resolution code back to None. I copied the final assessment. I pasted it into Work notes in the Notes tab. I changed one sentence. I wrote No resolution code has been selected. The investigation remains In Progress because the available evidence is insufficient to confirm or dismiss unauthorized activity. No separate ServiceNow Problem record has been created.
+
+Step 5. I clicked Post. ServiceNow saved the Work notes. I saw a new entry in the Activity history. I saw 8 entries in total. My incident is still In Progress. I did not click Resolve. I did not claim I fixed a real breach. I finished the training investigation. The security concern is still not proven.
+
+That is Steps 6.1 to 6.4 done.
+
+## Step 7
+
+Step 7 is not done yet. I will write the professional case study report. I will organize my screenshots and queries. My GitHub repo is already made. It is soc-servicenow-kql-lab. I will not make a new repo with a different name. I will use the repo I already have.
+
+That is Step 7 in progress.
+
 ## What I am learning
 
 A log is a record of what a computer did. A failed login is Event ID 4625. A successful login is Event ID 4624. A group change is Event ID 4728.
@@ -278,7 +308,7 @@ KQL is the language I use to ask questions about the logs. I used it to find the
 
 I learned three KQL ideas. Where is a filter. It keeps only the rows I want. Summarize is grouping and counting. Project picks the columns I want to see. Order by TimeGenerated asc sorts from earliest to latest.
 
-My incident is INC0010001. My State is In Progress. My Impact is 2 Medium. My Urgency is 2 Medium. My Priority is 3 Moderate. My verdict is Inconclusive. I found suspicious activity. I did not confirm a compromise.
+My incident is INC0010001. My State is In Progress. My Impact is 2 Medium. My Urgency is 2 Medium. My Priority is 3 Moderate. My verdict is Inconclusive. I found suspicious activity. I did not confirm a compromise. My incident remains In Progress. My Resolution code is None. My Activity history has 8 entries.
 
 My severity rating is Medium. The pattern is 8 failures then a success then a group change. I have not confirmed compromise. Severity can change if new evidence comes in.
 
@@ -288,7 +318,7 @@ ServiceNow is the ticketing system where I will write up the case. Another analy
 
 ## Screenshots
 
-Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. It shows the logs imported and 63 events in the table. The Step 3.1 screenshot is screenshots 04 first kql data exploration.png. It shows SecurityEvent | take 10 and the first 10 results. The Step 3.2 screenshot is screenshots 05 event type summary.png. It shows 49 successes and 13 failures and 1 group change. The Step 3.3 screenshot is screenshots 05 suspicious failed logins.png. It shows 8 failures for alex.morgan from 203.0.113.77. The Step 3.4 screenshot is screenshots 06 suspicious login timeline.png. It shows the 10 event timeline from 14:00 to 14:11 UTC. The Step 3.5 screenshot is screenshots 07 security group change.png. It shows the 4728 event for alex.morgan added to SOC-LAB-Admins. The Step 4.1 screenshot is screenshots 08 account activity comparison.png. It shows alex.morgan activity from 198.51.100.40 with 12 successes and from 203.0.113.77 with 8 failures and 1 success and 1 group change. The Step 5.3 screenshot is screenshots 09 servicenow incident draft.png. It shows INC0010001 with the short description and Urgency 2 Medium and State New before Submit. The Step 5.9 screenshot is screenshots 10 servicenow investigation details.png. It shows INC0010001 with Work notes saved and State In Progress and Priority 3 Moderate. The Step 5.12 screenshot is screenshots 11 servicenow evidence attached.png. It shows all 4 KQL screenshots attached to INC0010001.
+Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. It shows the logs imported and 63 events in the table. The Step 3.1 screenshot is screenshots 04 first kql data exploration.png. It shows SecurityEvent | take 10 and the first 10 results. The Step 3.2 screenshot is screenshots 05 event type summary.png. It shows 49 successes and 13 failures and 1 group change. The Step 3.3 screenshot is screenshots 05 suspicious failed logins.png. It shows 8 failures for alex.morgan from 203.0.113.77. The Step 3.4 screenshot is screenshots 06 suspicious login timeline.png. It shows the 10 event timeline from 14:00 to 14:11 UTC. The Step 3.5 screenshot is screenshots 07 security group change.png. It shows the 4728 event for alex.morgan added to SOC-LAB-Admins. The Step 4.1 screenshot is screenshots 08 account activity comparison.png. It shows alex.morgan activity from 198.51.100.40 with 12 successes and from 203.0.113.77 with 8 failures and 1 success and 1 group change. The Step 5.3 screenshot is screenshots 09 servicenow incident draft.png. It shows INC0010001 with the short description and Urgency 2 Medium and State New before Submit. The Step 5.9 screenshot is screenshots 10 servicenow investigation details.png. It shows INC0010001 with Work notes saved and State In Progress and Priority 3 Moderate. The Step 5.12 screenshot is screenshots 11 servicenow evidence attached.png. It shows all 4 KQL screenshots attached to INC0010001. The Step 6.4 screenshot is screenshots 12 servicenow final assessment.png. It shows INC0010001 with the final assessment saved and Activity history with 8 entries and State In Progress.
 
 ## Source
 
