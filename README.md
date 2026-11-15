@@ -318,7 +318,20 @@ ServiceNow is the ticketing system where I will write up the case. Another analy
 
 ## Screenshots
 
-Screenshots for this lab are in the screenshots folder in this repository. The Step 1.1 screenshot is screenshots 01 azure cluster database.png. It shows the SOC-Lab cluster and the SecurityLab database. The Step 1.3 screenshot is screenshots 02 servicenow environment.png. It shows the ServiceNow homepage after login. The Step 2 screenshot is screenshots 03 security logs uploaded.png. It shows the logs imported and 63 events in the table. The Step 3.1 screenshot is screenshots 04 first kql data exploration.png. It shows SecurityEvent | take 10 and the first 10 results. The Step 3.2 screenshot is screenshots 05 event type summary.png. It shows 49 successes and 13 failures and 1 group change. The Step 3.3 screenshot is screenshots 05 suspicious failed logins.png. It shows 8 failures for alex.morgan from 203.0.113.77. The Step 3.4 screenshot is screenshots 06 suspicious login timeline.png. It shows the 10 event timeline from 14:00 to 14:11 UTC. The Step 3.5 screenshot is screenshots 07 security group change.png. It shows the 4728 event for alex.morgan added to SOC-LAB-Admins. The Step 4.1 screenshot is screenshots 08 account activity comparison.png. It shows alex.morgan activity from 198.51.100.40 with 12 successes and from 203.0.113.77 with 8 failures and 1 success and 1 group change. The Step 5.3 screenshot is screenshots 09 servicenow incident draft.png. It shows INC0010001 with the short description and Urgency 2 Medium and State New before Submit. The Step 5.9 screenshot is screenshots 10 servicenow investigation details.png. It shows INC0010001 with Work notes saved and State In Progress and Priority 3 Moderate. The Step 5.12 screenshot is screenshots 11 servicenow evidence attached.png. It shows all 4 KQL screenshots attached to INC0010001. The Step 6.4 screenshot is screenshots 12 servicenow final assessment.png. It shows INC0010001 with the final assessment saved and Activity history with 8 entries and State In Progress.
+All 12 screenshots are in the screenshots folder in this repository.
+
+1. [01 Azure Lab Setup](screenshots/01-Azure-Lab-Setup.png) - SOC-Lab cluster and SecurityLab database
+2. [02 ServiceNow Environment](screenshots/02-ServiceNow-Environment.png) - ServiceNow homepage after login
+3. [03 Security Logs Uploaded](screenshots/03-Security-Logs-Uploaded.png) - 63 events in the SecurityEvent table
+4. [04 First KQL Data Exploration](screenshots/04-First-KQL-Data-Exploration.png) - SecurityEvent | take 10 and the first 10 results
+5. [05 Suspicious Failed Logins](screenshots/05-Suspicious-Failed-Logins.png) - 8 failures for alex.morgan from 203.0.113.77
+6. [06 Suspicious Login Timeline](screenshots/06-Suspicious-Login-Timeline.png) - 10 event timeline from 14:00 to 14:11 UTC
+7. [07 Security Group Change](screenshots/07-Security-Group-Change.png) - 4728 event for alex.morgan added to SOC-LAB-Admins
+8. [08 Account Activity Comparison](screenshots/08-Account-Activity-Comparison.png) - alex.morgan activity from two IP addresses
+9. [09 ServiceNow Incident Draft](screenshots/09-ServiceNow-Incident-Draft.png) - INC0010001 with Urgency 2 Medium and State New before Submit
+10. [10 ServiceNow Investigation Details](screenshots/10-ServiceNow-Investigation-Details.png) - INC0010001 with Work notes saved and State In Progress and Priority 3 Moderate
+11. [11 ServiceNow Evidence Attached](screenshots/11-ServiceNow-Evidence-Attached.png) - All 4 KQL screenshots attached to INC0010001
+12. [12 ServiceNow Final Assessment](screenshots/12-ServiceNow-Final-Assessment.png) - INC0010001 with the final assessment saved and Activity history with 8 entries and State In Progress
 
 ## Source
 
