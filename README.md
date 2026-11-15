@@ -40,15 +40,7 @@ Step 6.3 is done. I wrote the final assessment in Resolution notes.
 
 Step 6.4 is done. I moved the final assessment to Work notes. I set Resolution code back to None. I clicked Post. I saved the final assessment.
 
-Step 7 is done. The technical investigation is done up to Step 6.4. The rest is publishing. My GitHub repo is made. It is soc-servicenow-kql-lab. My README is live. My 12 screenshots are uploaded in the screenshots folder.
-
-Step 8 is not done yet. I will upload my KQL queries to the queries folder.
-
-Step 9 is done. My GitHub repo is published. It is public at github.com/Seklan0519/soc-servicenow-kql-lab.
-
-Step 10 is not done yet. I will make my LinkedIn post.
-
-The whole project has 10 steps. I am on Step 10 of 10 for the last step.
+This lab ends at Step 6.4. That is the last lab step. My GitHub repo is soc-servicenow-kql-lab. My README is live. My 12 screenshots are in the screenshots folder. My KQL queries are in the queries folder. My sample data is in the sample-data folder.
 
 ## Step 1.1
 
@@ -278,12 +270,6 @@ Step 4. I opened the paperclip window again. I saw all 4 files attached. I saw 7
 
 That is Steps 5.10 to 5.12 done.
 
-## Step 6.1
-
-Step 6.1 is not done yet. I will open Resolution Information. I will review the final outcome. My verdict is Inconclusive. I found suspicious activity. I cannot prove it was allowed. I cannot prove it was not allowed. I will not call it a confirmed attack. I will not call it a real fix. I will write down what I found and what is still not known.
-
-That is Step 6.1 in progress.
-
 ## Step 6.1 to 6.4
 
 I did Steps 6.1 to 6.4 step by step. Each step has a small note. The note shows what is happening and why I did it.
@@ -299,12 +285,6 @@ Step 4. I first picked Not Resolved Problem Raised. Then I changed my mind. That
 Step 5. I clicked Post. ServiceNow saved the Work notes. I saw a new entry in the Activity history. I saw 8 entries in total. My incident is still In Progress. I did not click Resolve. I did not claim I fixed a real breach. I finished the training investigation. The security concern is still not proven.
 
 That is Steps 6.1 to 6.4 done.
-
-## Step 7
-
-Step 7 is done. The technical work is done up to Step 6.4. The rest is publishing. My GitHub repo is already made. It is soc-servicenow-kql-lab. I will not make a new repo with a different name. I will use the repo I already have. My README is live. My 12 screenshots are in the screenshots folder. My case study is this README. It has my steps and my findings and my timeline.
-
-That is Step 7 done.
 
 ## What I am learning
 
